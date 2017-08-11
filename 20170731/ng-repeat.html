@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="toDoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>ng-repeat</title>
+  </head>
+  <body ng-controller="MainCtrl as main">
+    <!-- <h1>ToDo List:</h1>
+    <div ng-repeat="item in main.getToDo()">
+      <p>{{item.title}}(due: {{item.due}})  done:{{item.done}}</p>
+    </div> -->
+
+    <!-- <hr> -->
+
+    <h1>ToDo List (Object):</h1>
+    <div ng-repeat="(title, detail) in main.getToDoObj()">
+      <p>{{title}}(due: {{detail.due}})  done:{{detail.done}}</p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ng-repeat.js"></script>
+  </body>
+</html>

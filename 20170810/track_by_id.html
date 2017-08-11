@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="trackById">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track by ID</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-controller="MainCtrl as main">
+    <div class="container-fluid">
+      <strong>track by <code>$$hashKey</code></strong>
+      <ul>
+        <li ng-repeat="bookmark in main.bookmarks">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="main.editBookmark(bookmark)"></span>
+          <a href="{{bookmark.url}}">{{bookmark.name}}</a>
+          {{main.toJSON(bookmark)}}
+        </li>
+      </ul>
+
+      <hr>
+
+      <strong>track by <code>name</code></strong>
+      <ul>
+        <li ng-repeat="bookmark in main.bookmarks2 track by bookmark.name">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="main.editBookmark(bookmark)"></span>
+          <a href="{{bookmark.url}}">{{bookmark.name}}</a>
+          {{main.toJSON(bookmark)}}
+        </li>
+      </ul>
+
+      <hr>
+
+      <form>
+        <label for="bookmark-name">Name:</label>
+        <input id="bookmark-name" type="text" class="form-control" placeholder="name" ng-model="main.editingBookmark.name">
+        <label for="bookmark-url">URL:</label>
+        <input id="bookmark-url" type="text" class="form-control" placeholder="http://www.example.com" ng-model="main.editingBookmark.url">
+        <br>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="main.addBookmark()" ng-if="main.mode.new">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
+          </button>
+          <button type="button" class="btn btn-default" ng-click="main.saveBookmark()" ng-if="main.mode.edit">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+          </button>
+          <button type="button" class="btn btn-default" ng-click="main.refreshBookmark()">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
+          </button>
+          <button type="button" class="btn btn-default" ng-click="main.allToHttps()">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTTPS!
+          </button>
+        </div>
+      </form>
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--  Angular.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="track_by_id.js"></script>
+  </body>
+</html>

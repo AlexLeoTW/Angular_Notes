@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="showDirective">
+  <head>
+    <meta charset="utf-8">
+    <title>More Directives</title>
+    <link rel="stylesheet" href="more_directives.css">
+  </head>
+
+  <body ng-controller="MainCtrl as main">
+    <h1>More Directives Example</h1>
+
+    <hr>
+
+    <h2>controllerAs</h2>
+    <p>\{\{main.name\}\}: {{main.name}}</p>
+    <p>ng-bind="main.name": <span ng-bind="main.name"></span></p>
+
+    <hr>
+
+    <h2>ToDo List:</h2>
+    <div ng-repeat="item in main.toDo">
+      <p ng-hide="item.done">{{item.title}}(due: {{item.due}}) done:{{item.done}}</p>
+    </div>
+
+    <hr>
+
+    <h2>ToDo List (Object):</h2>
+    <div ng-repeat="(title, detail) in main.toDoObj">
+      <p ng-class="main.getItemClass(detail)">{{title}}(due: {{detail.due}}) done:{{detail.done}}</p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="more_directives.js"></script>
+  </body>
+</html>
